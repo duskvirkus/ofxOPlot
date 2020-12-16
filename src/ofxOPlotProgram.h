@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ofxOPlotDefines.h"
 #include "ofxOPlotDirective.h"
 #include <deque>
 #include <string>

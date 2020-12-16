@@ -10,7 +10,7 @@ Directive::Directive() {
 }
 
 void Directive::command(COMMAND cmd) {
-  const char* cmdString;
+  const char* cmdString = "eror";
   switch (cmd) {
     case start:
       cmdString = "star";
@@ -32,7 +32,7 @@ void Directive::command(COMMAND cmd) {
 }
 
 void Directive::uint16(int byteOffset, u_int16_t value) {
-  if (byteOffset > OPLOT_COMMAND_SIZE - (sizeof(uint16_t) + 1)) {
+  if (static_cast<unsigned long>(byteOffset) > OPLOT_COMMAND_SIZE - (sizeof(uint16_t) + 1)) {
     cout << "error invalid byteOffset" << '\n';
     exit(1);
   }
@@ -42,7 +42,7 @@ void Directive::uint16(int byteOffset, u_int16_t value) {
 }
 
 void Directive::float32(int byteOffset, float value) {
-  if (byteOffset > OPLOT_COMMAND_SIZE - (sizeof(float) + 3)) {
+  if (static_cast<unsigned long>(byteOffset) > OPLOT_COMMAND_SIZE - (sizeof(float) + 3)) {
     cout << "error invalid byteOffset" << '\n';
     exit(1);
   }
@@ -59,6 +59,7 @@ ofSerial& operator<<(ofSerial& serial, const Directive& d) {
   for (int i = 0; i < OPLOT_DIRECTIVE_SIZE; ++i) {
     serial.writeByte(d.bytes[i]);
   }
+  return serial;
 }
 
 } // namespace ofxOPlot

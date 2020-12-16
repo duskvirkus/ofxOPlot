@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ofxOPlotDefines.h"
 #include "ofxOPlotProgram.h"
 #include "ofMain.h"
 #include <memory>
