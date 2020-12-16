@@ -7,4 +7,4 @@
 #include "ofxOPlotMachine.h"
 #include <climits>
 
-char static_assert_float32[1 - (2 * ((sizeof(float) * CHAR_BIT) != 32))];
+//char static_assert_float32[1 - (2 * ((sizeof(float) * CHAR_BIT) != 32))];
