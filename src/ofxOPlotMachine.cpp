@@ -13,6 +13,9 @@ void Machine::setup(int serialIndex, int baud) {
 }
 
 void Machine::update() {
+  if (serial.available() > 0) {
+    cout << "serial available " << serial.available() << '\n';
+  }
   if (serial.available() >= 4) {
     vector<uint8_t> reply;
 
@@ -30,6 +33,13 @@ void Machine::update() {
       ready = true;
     }
 
+    std::string err = "";
+    for (size_t i = 0; i < reply.size(); i++) {
+      err += static_cast<char>(reply[i]);
+    }
+
+    cout << "received: " << err << '\n';
+
     // TODO: handle error
   }
   
@@ -41,7 +51,6 @@ void Machine::update() {
 
 void Machine::loadProgram(const Program& p) {
   programPtr = make_unique<Program>(Program(p));
-  programPtr->sendNext(serial);
 }
 
 }
