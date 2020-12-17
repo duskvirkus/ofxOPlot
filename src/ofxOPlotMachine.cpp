@@ -13,9 +13,6 @@ void Machine::setup(int serialIndex, int baud) {
 }
 
 void Machine::update() {
-  if (serial.available() > 0) {
-    cout << "serial available " << serial.available() << '\n';
-  }
   if (serial.available() >= 4) {
     vector<uint8_t> reply;
 

@@ -58,8 +58,6 @@ void Directive::float32(int byteOffset, float value) {
 ofSerial& operator<<(ofSerial& serial, const Directive& d) {
   for (int i = 0; i < OPLOT_DIRECTIVE_SIZE; ++i) {
     cout << d.bytes[i] << ' ' << static_cast<int>(d.bytes[i]) << '\n';
-
-    serial.writeByte(d.bytes[i]);
   }
   return serial;
 }
